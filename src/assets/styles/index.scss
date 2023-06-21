@@ -1,3 +1,6 @@
+@import "./mixins/fonts.scss";
+@import "./fonts.scss";
+
 *,
 *::after,
 *::before {
@@ -10,6 +13,7 @@ html {
 
 body {
   font-size: 16px;
+  font-family: $main-font;
 
   background-color: #fff;
 }
