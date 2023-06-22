@@ -1,5 +1,6 @@
 import { useState } from "react";
-import MyInput from "../MyInput/MyInput";
+import MyInput from "@/components/MyInput/MyInput";
+
 import styles from "./SearchBar.module.scss";
 
 function SearchBar({ className }) {

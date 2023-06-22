@@ -1,7 +1,9 @@
-import EmotionSelect from "../EmotionSelect/EmotionSelect";
-import SearchBar from "../SearchBar/SearchBar";
-import styles from "./Header.module.scss";
+import Menu from "@/components/Menu/Menu";
 import logo from "@/assets/images/logo.svg";
+import SearchBar from "@/components/SearchBar/SearchBar";
+import EmotionSelect from "@/components/EmotionSelect/EmotionSelect";
+
+import styles from "./Header.module.scss";
 
 function Header() {
   return (
@@ -16,6 +18,7 @@ function Header() {
           <div className={styles.menu}>
             <SearchBar className={styles.menuSearch} />
             <EmotionSelect className={styles.menuSelect} />
+            <Menu />
           </div>
         </div>
       </div>

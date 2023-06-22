@@ -3,6 +3,7 @@ import calmIcon from "@/assets/images/emotions/calm.png";
 import happyIcon from "@/assets/images/emotions/happy.png";
 import cryIcon from "@/assets/images/emotions/cry.png";
 import placeholderIcon from "@/assets/images/emotions/smile-mouth-open.png";
+
 import styles from "./EmotionIcon.module.scss";
 
 function EmotionIcon(props) {

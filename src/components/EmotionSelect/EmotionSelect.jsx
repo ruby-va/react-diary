@@ -1,8 +1,9 @@
 import Select from "react-select";
-import EmotionIcon from "../EmotionIcon/EmotionIcon";
+import EmotionIcon from "@/components/EmotionIcon/EmotionIcon";
+
 import styles from "./EmotionSelect.module.scss";
 
-function EmotionSelect() {
+function EmotionSelect({ className }) {
   const options = [
     {
       value: "cry",
@@ -58,6 +59,7 @@ function EmotionSelect() {
         </div>
       )}
       placeholder={<EmotionIcon size={24} emotion="placeholder" />}
+      className={`${className}`}
     >
       fff
     </Select>
