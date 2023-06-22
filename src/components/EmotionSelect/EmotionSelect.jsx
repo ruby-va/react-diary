@@ -55,7 +55,6 @@ function EmotionSelect({ className }) {
       getOptionLabel={(e) => (
         <div style={{ display: "flex", alignItems: "center" }}>
           <EmotionIcon title={e.text} emotion={e.value} size={24} />
-          {/* <span style={{ marginLeft: 5 }}>{e.text}</span> */}
         </div>
       )}
       placeholder={<EmotionIcon size={24} emotion="placeholder" />}

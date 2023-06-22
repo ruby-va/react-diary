@@ -1,0 +1,10 @@
+.entries {
+  padding: 8px 0;
+}
+
+.entriesGrid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: max-content;
+}
