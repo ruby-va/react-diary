@@ -14,8 +14,8 @@ function Header() {
           </div>
 
           <div className={styles.menu}>
-            <SearchBar />
-            <EmotionSelect />
+            <SearchBar className={styles.menuSearch} />
+            <EmotionSelect className={styles.menuSelect} />
           </div>
         </div>
       </div>

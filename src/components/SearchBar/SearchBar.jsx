@@ -1,13 +1,25 @@
 import { useState } from "react";
+import MyInput from "../MyInput/MyInput";
+import styles from "./SearchBar.module.scss";
 
-function SearchBar() {
-  const [value, setValue] = useState();
+function SearchBar({ className }) {
+  const [searchValue, setSearchValue] = useState("");
+
+  console.log("className", className);
+
+  const searchHandler = (e) => {
+    setSearchValue(e.target.value);
+    console.log(searchValue);
+  };
 
   return (
-    <div className="searchBar">
-      <label htmlFor="">Поиск</label>
-      <input type="text" placeholder="Поиск" />
-    </div>
+    <MyInput
+      className={`${styles.searchInput} ${className}`}
+      value={searchValue}
+      placeholder="Поиск"
+      onChange={searchHandler}
+      label="Поиск записей"
+    />
   );
 }
 export default SearchBar;
