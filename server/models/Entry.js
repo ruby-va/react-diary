@@ -10,6 +10,7 @@ const EntrySchema = new Schema({
   },
   title: { type: String, required: true },
   content: { type: String, required: true },
+  image: { type: String, default: null },
 });
 
 EntrySchema.plugin(uniqueValidator);
