@@ -11,14 +11,6 @@ function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const logIn = () => {
-    setIsModalOpen(true);
-  };
-
-  const logOut = () => {
-    console.log("logout");
-  };
-
   return (
     <header className={styles.header}>
       <div className="container">
@@ -36,9 +28,9 @@ function Header() {
 
           <div className="user">
             {isLoggedIn ? (
-              <button onClick={logOut}>Выйти</button>
+              <button onClick={() => console.log("Logout")}>Выйти</button>
             ) : (
-              <button onClick={logIn}>Войти</button>
+              <button onClick={() => setIsModalOpen(true)}>Войти</button>
             )}
           </div>
           <AuthModal

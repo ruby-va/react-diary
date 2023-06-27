@@ -1,14 +1,84 @@
 import Modal from "@/components/Modal/Modal";
 import styles from "./AuthModal.module.scss";
 import MyInput from "@/components/MyInput/MyInput";
+import { useState } from "react";
 
 const AuthModal = (props) => {
   const { isOpen, onClose } = props;
+  const [isLoginForm, setIsLoginForm] = useState(true);
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+
+  const registerForm = {
+    title: "Зарегистрироваться",
+    btnText: "Регистрация",
+    formHandler: (e) => {
+      e.preventDefault();
+      const register = async () => {
+        try {
+          const rawResponse = await fetch(
+            "http://localhost:5001/api/auth/registration",
+            {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ password, username: login }),
+            }
+          );
+          const content = await rawResponse.json();
+          console.log(content);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      register();
+    },
+  };
+
+  const loginForm = {
+    title: "Войдите в систему",
+    btnText: "Войти",
+    formHandler: (e) => {
+      e.preventDefault();
+
+      const loginFetch = async () => {
+        try {
+          const rawResponse = await fetch(
+            "http://localhost:5001/api/auth/login",
+            {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                password,
+                username: login,
+              }),
+            }
+          );
+          const content = await rawResponse.json();
+          console.log(content);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      loginFetch();
+    },
+  };
+
+  const { title, btnText, formHandler } = isLoginForm
+    ? loginForm
+    : registerForm;
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <div className="authModal">
-        <h1>Войдите в систему</h1>
+      <form className="authModal" onSubmit={formHandler}>
+        <h1>{title}</h1>
 
         <MyInput
           className={styles.input}
@@ -18,6 +88,8 @@ const AuthModal = (props) => {
           type="text"
           border={true}
           id="login"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
         />
         <MyInput
           className={styles.input}
@@ -27,12 +99,14 @@ const AuthModal = (props) => {
           type="password"
           border={true}
           id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <button type="submit" className={styles.btn}>
-          Войти
+          {btnText}
         </button>
-      </div>
+      </form>
     </Modal>
   );
 };
