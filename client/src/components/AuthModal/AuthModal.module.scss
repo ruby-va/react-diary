@@ -17,3 +17,24 @@
   border-radius: 12px;
   border: none;
 }
+
+.formChanger {
+  margin-top: 10px;
+  font-size: 14px;
+
+  span {
+    margin-right: 4px;
+  }
+
+  button {
+    padding: 0;
+
+    color: $active;
+    font-size: 14px;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $active;
+    cursor: pointer;
+  }
+}

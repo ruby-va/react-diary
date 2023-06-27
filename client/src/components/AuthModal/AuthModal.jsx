@@ -106,6 +106,22 @@ const AuthModal = (props) => {
         <button type="submit" className={styles.btn}>
           {btnText}
         </button>
+
+        {isLoginForm ? (
+          <div className={styles.formChanger}>
+            <span>Ещё нет аккаунта?</span>
+            <button type="button" onClick={() => setIsLoginForm(false)}>
+              Регистрация
+            </button>
+          </div>
+        ) : (
+          <div className={styles.formChanger}>
+            <span>Уже есть аккаунт?</span>
+            <button type="button" onClick={() => setIsLoginForm(true)}>
+              Войти
+            </button>
+          </div>
+        )}
       </form>
     </Modal>
   );
