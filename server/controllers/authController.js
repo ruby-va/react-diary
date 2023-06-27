@@ -38,6 +38,8 @@ class authController {
       });
       await user.save();
       return res.json({ message: "Пользователь успешно зарегистрирован" });
+      // const role = new Role();
+      // role.save();
     } catch (e) {
       console.log(e);
       res.status(400).json({ message: "Registration error" });

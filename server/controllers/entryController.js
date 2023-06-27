@@ -3,11 +3,9 @@ const Entry = require("../models/Entry");
 class entryController {
   async createEntry(req, res) {
     try {
-      console.log(req.body, " 44444444444");
       const entry = new Entry(req.body);
-      await entry.save();
-      console.log(entry);
-      res.json(entry);
+      const entryD = await entry.save();
+      res.json(entryD);
     } catch (e) {
       console.log(e);
     }
@@ -15,8 +13,8 @@ class entryController {
 
   async getEntries(req, res) {
     try {
-      const users = await Entry.find();
-      res.json(users);
+      const entries = await Entry.find();
+      res.json(entries);
     } catch (e) {
       console.log(e);
     }
