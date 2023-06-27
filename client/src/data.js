@@ -7,7 +7,7 @@ const entries = [
     date: "21 августа 2021 года",
     emotion: "happy",
     image:
-      "https://img.freepik.com/free-photo/wide-angle-shot-of-a-single-tree-growing-under-a-clouded-sky-during-a-sunset-surrounded-by-grass_181624-22807.jpg?w=2000",
+      "https://p4.wallpaperbetter.com/wallpaper/252/927/705/yukihana-lamy-hololive-blue-hair-long-hair-pointy-ears-hd-wallpaper-preview.jpg",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const entries = [
     date: "21 августа 2021 года",
     emotion: "calm",
     image:
-      "https://img.freepik.com/free-photo/wide-angle-shot-of-a-single-tree-growing-under-a-clouded-sky-during-a-sunset-surrounded-by-grass_181624-22807.jpg?w=2000",
+      "https://p4.wallpaperbetter.com/wallpaper/862/659/664/lolita-fashion-neko-loli-animal-ears-loli-wallpaper-preview.jpg",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const entries = [
     date: "21 августа 2021 года",
     emotion: "pensive",
     image:
-      "https://img.freepik.com/free-photo/wide-angle-shot-of-a-single-tree-growing-under-a-clouded-sky-during-a-sunset-surrounded-by-grass_181624-22807.jpg?w=2000",
+      "https://p4.wallpaperbetter.com/wallpaper/870/459/808/keqing-genshin-impact-long-hair-purple-hair-purple-eyes-animal-ears-hd-wallpaper-preview.jpg",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const entries = [
     date: "21 августа 2021 года",
     emotion: "happy",
     image:
-      "https://img.freepik.com/free-photo/wide-angle-shot-of-a-single-tree-growing-under-a-clouded-sky-during-a-sunset-surrounded-by-grass_181624-22807.jpg?w=2000",
+      "https://p4.wallpaperbetter.com/wallpaper/625/124/915/neko-loli-purple-hair-anime-girls-long-hair-wallpaper-preview.jpg",
   },
   {
     id: 5,
