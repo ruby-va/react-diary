@@ -20,6 +20,7 @@ function SearchBar({ className }) {
       placeholder="Поиск"
       onChange={searchHandler}
       label="Поиск записей"
+      id="search"
     />
   );
 }

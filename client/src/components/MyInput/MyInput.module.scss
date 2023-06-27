@@ -1,6 +1,11 @@
 .inputWrapper {
   max-width: 100%;
   width: 100%;
+
+  label {
+    display: block;
+    margin-bottom: 4px;
+  }
 }
 
 .input {

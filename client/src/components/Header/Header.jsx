@@ -4,8 +4,21 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import EmotionSelect from "@/components/EmotionSelect/EmotionSelect";
 
 import styles from "./Header.module.scss";
+import { useState } from "react";
+import AuthModal from "@/components/AuthModal/AuthModal";
 
 function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const logIn = () => {
+    setIsModalOpen(true);
+  };
+
+  const logOut = () => {
+    console.log("logout");
+  };
+
   return (
     <header className={styles.header}>
       <div className="container">
@@ -20,6 +33,18 @@ function Header() {
             <EmotionSelect className={styles.menuSelect} />
             <Menu />
           </div>
+
+          <div className="user">
+            {isLoggedIn ? (
+              <button onClick={logOut}>Выйти</button>
+            ) : (
+              <button onClick={logIn}>Войти</button>
+            )}
+          </div>
+          <AuthModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
         </div>
       </div>
     </header>

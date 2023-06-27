@@ -4,25 +4,27 @@ function MyInput(props) {
   const {
     label,
     value,
-    type,
+    type = "text",
     placeholder,
     onChange,
     isLabelShown = false,
     className,
+    border = false,
+    id,
   } = props;
   return (
     <div className={`${styles.inputWrapper} ${className}`}>
       {label && (
-        <label htmlFor="input-field" className={!isLabelShown && "sr-only"}>
+        <label htmlFor={id} className={isLabelShown ? undefined : "sr-only"}>
           {label}
         </label>
       )}
       <input
+        style={border ? { border: "1px solid black" } : undefined}
         type={type}
         value={value}
-        name={name}
         className={styles.input}
-        id="input-field"
+        id={id}
         placeholder={placeholder}
         onChange={onChange}
       />
