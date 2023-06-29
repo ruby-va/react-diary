@@ -1,12 +1,14 @@
 import Modal from "@/components/Modal/Modal";
 import styles from "./AuthModal.module.scss";
 import MyInput from "@/components/MyInput/MyInput";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import appContext from "@/context/appContext";
 
 const AuthModal = (props) => {
+  const { login } = useContext(appContext);
   const { isOpen, onClose } = props;
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [login, setLogin] = useState("");
+  const [userLogin, setUserLogin] = useState("");
   const [password, setPassword] = useState("");
 
   const registerForm = {
@@ -24,10 +26,11 @@ const AuthModal = (props) => {
                 Accept: "application/json",
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify({ password, username: login }),
+              body: JSON.stringify({ password, username: userLogin }),
             }
           );
           const content = await rawResponse.json();
+
           console.log(content);
         } catch (error) {
           console.log(error);
@@ -56,11 +59,13 @@ const AuthModal = (props) => {
               },
               body: JSON.stringify({
                 password,
-                username: login,
+                username: userLogin,
               }),
             }
           );
           const content = await rawResponse.json();
+          login();
+          setTimeout(onClose, 2000);
           console.log(content);
         } catch (error) {
           console.log(error);
@@ -88,8 +93,8 @@ const AuthModal = (props) => {
           type="text"
           border={true}
           id="login"
-          value={login}
-          onChange={(e) => setLogin(e.target.value)}
+          value={userLogin}
+          onChange={(e) => setUserLogin(e.target.value)}
         />
         <MyInput
           className={styles.input}

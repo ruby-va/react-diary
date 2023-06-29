@@ -4,11 +4,14 @@ import SearchBar from "@/components/SearchBar/SearchBar";
 import EmotionSelect from "@/components/EmotionSelect/EmotionSelect";
 
 import styles from "./Header.module.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AuthModal from "@/components/AuthModal/AuthModal";
 
+import appContext from "@/context/appContext";
+
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAuth, logout } = useContext(appContext);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -27,8 +30,8 @@ function Header() {
           </div>
 
           <div className="user">
-            {isLoggedIn ? (
-              <button onClick={() => console.log("Logout")}>Выйти</button>
+            {isAuth ? (
+              <button onClick={() => logout()}>Выйти</button>
             ) : (
               <button onClick={() => setIsModalOpen(true)}>Войти</button>
             )}
