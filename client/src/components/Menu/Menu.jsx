@@ -13,7 +13,7 @@ function Menu() {
       color: "#000",
     },
     {
-      link: "add-note",
+      link: "/add-note",
       text: "Запись",
       icon: penIcon,
       background: "#61b15a",

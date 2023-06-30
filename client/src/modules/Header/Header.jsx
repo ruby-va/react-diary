@@ -1,7 +1,7 @@
 import Menu from "@/components/Menu/Menu";
 import logo from "@/assets/images/logo.svg";
 import SearchBar from "@/components/SearchBar/SearchBar";
-import EmotionSelect from "@/components/EmotionSelect/EmotionSelect";
+import EmotionSelect from "@/UI/EmotionSelect/EmotionSelect";
 
 import styles from "./Header.module.scss";
 import { useContext, useState } from "react";
@@ -10,7 +10,8 @@ import AuthModal from "@/modules/AuthModal/AuthModal";
 import { Context } from "@/main";
 import { observer } from "mobx-react-lite";
 
-function Header() {
+function Header(props) {
+  const { isSearchBar = true } = props;
   const { store } = useContext(Context);
   console.log(store);
 
@@ -26,8 +27,13 @@ function Header() {
           </div>
 
           <div className={styles.menu}>
-            <SearchBar className={styles.menuSearch} />
-            <EmotionSelect className={styles.menuSelect} />
+            {isSearchBar && (
+              <>
+                <SearchBar className={styles.menuSearch} />{" "}
+                <EmotionSelect className={styles.menuSelect} />
+              </>
+            )}
+
             <Menu />
           </div>
 
