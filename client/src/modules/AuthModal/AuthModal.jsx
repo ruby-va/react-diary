@@ -16,18 +16,24 @@ const AuthModal = (props) => {
   const registerForm = {
     title: "Зарегистрироваться",
     btnText: "Регистрация",
-    formHandler: (e) => {
+    formHandler: async (e) => {
       e.preventDefault();
-      store.registration(userEmail, password);
+      await store.registration(userEmail, password);
+      if (store.isAuth) {
+        onClose();
+      }
     },
   };
 
   const loginForm = {
     title: "Войдите в систему",
     btnText: "Войти",
-    formHandler: (e) => {
+    formHandler: async (e) => {
       e.preventDefault();
-      store.login(userEmail, password);
+      await store.login(userEmail, password);
+      if (store.isAuth) {
+        onClose();
+      }
     },
   };
 
