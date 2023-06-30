@@ -7,10 +7,13 @@ import styles from "./Header.module.scss";
 import { useContext, useState } from "react";
 import AuthModal from "@/components/AuthModal/AuthModal";
 
-import appContext from "@/context/appContext";
+import { Context } from "@/main";
+import { observer } from "mobx-react-lite";
 
 function Header() {
-  const { isAuth, logout } = useContext(appContext);
+  const { store } = useContext(Context);
+  const { isAuth, logout } = store;
+  console.log(store);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -45,4 +48,4 @@ function Header() {
     </header>
   );
 }
-export default Header;
+export default observer(Header);

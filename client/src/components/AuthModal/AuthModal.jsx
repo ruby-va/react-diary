@@ -2,10 +2,13 @@ import Modal from "@/components/Modal/Modal";
 import styles from "./AuthModal.module.scss";
 import MyInput from "@/components/MyInput/MyInput";
 import { useContext, useState } from "react";
-import appContext from "@/context/appContext";
+
+import { Context } from "@/main";
+import { observer } from "mobx-react-lite";
 
 const AuthModal = (props) => {
-  const { login } = useContext(appContext);
+  const { store } = useContext(Context);
+  const { login, registration } = store;
   const { isOpen, onClose } = props;
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [userLogin, setUserLogin] = useState("");
@@ -14,31 +17,7 @@ const AuthModal = (props) => {
   const registerForm = {
     title: "Зарегистрироваться",
     btnText: "Регистрация",
-    formHandler: (e) => {
-      e.preventDefault();
-      const register = async () => {
-        try {
-          const rawResponse = await fetch(
-            "http://localhost:5001/api/auth/registration",
-            {
-              method: "POST",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ password, username: userLogin }),
-            }
-          );
-          const content = await rawResponse.json();
-
-          console.log(content);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
-      register();
-    },
+    formHandler: (e) => registration(userLogin, password),
   };
 
   const loginForm = {
@@ -46,33 +25,7 @@ const AuthModal = (props) => {
     btnText: "Войти",
     formHandler: (e) => {
       e.preventDefault();
-
-      const loginFetch = async () => {
-        try {
-          const rawResponse = await fetch(
-            "http://localhost:5001/api/auth/login",
-            {
-              method: "POST",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                password,
-                username: userLogin,
-              }),
-            }
-          );
-          const content = await rawResponse.json();
-          login();
-          setTimeout(onClose, 2000);
-          console.log(content);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-
-      loginFetch();
+      login(userLogin, password);
     },
   };
 
@@ -131,4 +84,4 @@ const AuthModal = (props) => {
     </Modal>
   );
 };
-export default AuthModal;
+export default observer(AuthModal);
