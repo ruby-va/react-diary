@@ -1,22 +1,28 @@
 {
-  "name": "my_awesome_server",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "RubyVA",
+  "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
-    "mongoose-unique-validator": "^4.0.0",
+    "nodemailer": "^6.9.3",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.22"
   }
 }
