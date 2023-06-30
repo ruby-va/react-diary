@@ -1,5 +1,5 @@
 import Select from "react-select";
-import EmotionIcon from "@/components/EmotionIcon/EmotionIcon";
+import EmotionIcon from "@/UI/EmotionIcon/EmotionIcon";
 
 import styles from "./EmotionSelect.module.scss";
 
@@ -63,10 +63,5 @@ function EmotionSelect({ className }) {
       fff
     </Select>
   );
-  //   return (
-  //     <div>
-  //       <EmotionIcon emotion="pensive" />
-  //     </div>
-  //   );
 }
 export default EmotionSelect;

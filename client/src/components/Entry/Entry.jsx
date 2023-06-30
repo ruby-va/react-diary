@@ -1,4 +1,4 @@
-import EmotionIcon from "@/components/EmotionIcon/EmotionIcon";
+import EmotionIcon from "@/UI/EmotionIcon/EmotionIcon";
 import styles from "./Entry.module.scss";
 
 function Entry(props) {

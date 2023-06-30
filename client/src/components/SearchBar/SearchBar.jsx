@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MyInput from "@/components/MyInput/MyInput";
+import MyInput from "@/UI/MyInput/MyInput";
 
 import styles from "./SearchBar.module.scss";
 

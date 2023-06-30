@@ -5,14 +5,13 @@ import EmotionSelect from "@/components/EmotionSelect/EmotionSelect";
 
 import styles from "./Header.module.scss";
 import { useContext, useState } from "react";
-import AuthModal from "@/components/AuthModal/AuthModal";
+import AuthModal from "@/modules/AuthModal/AuthModal";
 
 import { Context } from "@/main";
 import { observer } from "mobx-react-lite";
 
 function Header() {
   const { store } = useContext(Context);
-  const { isAuth, logout } = store;
   console.log(store);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,8 +32,8 @@ function Header() {
           </div>
 
           <div className="user">
-            {isAuth ? (
-              <button onClick={() => logout()}>Выйти</button>
+            {store.isAuth ? (
+              <button onClick={() => store.logout()}>Выйти</button>
             ) : (
               <button onClick={() => setIsModalOpen(true)}>Войти</button>
             )}

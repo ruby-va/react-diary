@@ -1,5 +1,5 @@
-import EntryList from "@/components/EntryList/EntryList";
-import Header from "@/components/Header/Header";
+import EntryList from "@/modules/EntryList/EntryList";
+import Header from "@/modules/Header/Header";
 import data from "@/data";
 
 function Home() {

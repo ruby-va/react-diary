@@ -1,6 +1,6 @@
 import Modal from "@/components/Modal/Modal";
 import styles from "./AuthModal.module.scss";
-import MyInput from "@/components/MyInput/MyInput";
+import MyInput from "@/UI/MyInput/MyInput";
 import { useContext, useState } from "react";
 
 import { Context } from "@/main";
@@ -8,16 +8,18 @@ import { observer } from "mobx-react-lite";
 
 const AuthModal = (props) => {
   const { store } = useContext(Context);
-  const { login, registration } = store;
   const { isOpen, onClose } = props;
   const [isLoginForm, setIsLoginForm] = useState(true);
-  const [userLogin, setUserLogin] = useState("");
+  const [userEmail, setUserEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const registerForm = {
     title: "Зарегистрироваться",
     btnText: "Регистрация",
-    formHandler: (e) => registration(userLogin, password),
+    formHandler: (e) => {
+      e.preventDefault();
+      store.registration(userEmail, password);
+    },
   };
 
   const loginForm = {
@@ -25,7 +27,7 @@ const AuthModal = (props) => {
     btnText: "Войти",
     formHandler: (e) => {
       e.preventDefault();
-      login(userLogin, password);
+      store.login(userEmail, password);
     },
   };
 
@@ -46,8 +48,8 @@ const AuthModal = (props) => {
           type="text"
           border={true}
           id="login"
-          value={userLogin}
-          onChange={(e) => setUserLogin(e.target.value)}
+          value={userEmail}
+          onChange={(e) => setUserEmail(e.target.value)}
         />
         <MyInput
           className={styles.input}
