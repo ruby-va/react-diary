@@ -3,7 +3,7 @@ import EmotionIcon from "@/UI/EmotionIcon/EmotionIcon";
 
 import styles from "./EmotionSelect.module.scss";
 
-function EmotionSelect({ className }) {
+function EmotionSelect(props) {
   const options = [
     {
       value: "cry",
@@ -22,6 +22,8 @@ function EmotionSelect({ className }) {
       text: "Спокойный",
     },
   ];
+
+  const { className, onChange, value } = props;
 
   const colourStyles = {
     control: (styles) => ({
@@ -43,15 +45,11 @@ function EmotionSelect({ className }) {
     },
   };
 
-  const handleChange = (selectedValue) => {
-    console.log(selectedValue);
-  };
-
   return (
     <Select
       styles={colourStyles}
       options={options}
-      onChange={handleChange}
+      onChange={(o) => onChange(o)}
       getOptionLabel={(e) => (
         <div style={{ display: "flex", alignItems: "center" }}>
           <EmotionIcon title={e.text} emotion={e.value} size={24} />
@@ -59,9 +57,8 @@ function EmotionSelect({ className }) {
       )}
       placeholder={<EmotionIcon size={24} emotion="placeholder" />}
       className={`${className}`}
-    >
-      fff
-    </Select>
+      value={value}
+    ></Select>
   );
 }
 export default EmotionSelect;

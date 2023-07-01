@@ -3,44 +3,73 @@ import styles from "./CreatePostForm.module.scss";
 import { useState } from "react";
 import EmotionSelect from "@/UI/EmotionSelect/EmotionSelect";
 import SearchBar from "@/components/SearchBar/SearchBar";
+import MyButton from "@/UI/MyButton/MyButton";
+import MyTextarea from "@/UI/MyTextarea/MyTextarea";
 
 const CreatePostForm = () => {
-  const [title, setTitle] = useState();
-  const [date, setDate] = useState();
-  const [mood, setMood] = useState();
-  const [description, setDescription] = useState();
-  const [searchTerm, setSearchTerm] = useState();
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+  const [mood, setMood] = useState("cry");
+  const [description, setDescription] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(title, date, mood, description, searchTerm);
+  };
 
   return (
-    <div className={styles.grid}>
-      <div className={styles.formInfo}>
-        <MyInput
-          className={styles.input}
-          label="Заголовок поста"
-          isLabelShown={true}
-          placeholder="Название"
-          type="text"
-          border={true}
-          id="Название"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <div>
-          <EmotionSelect />
+    <div className="container">
+      <div className={styles.grid}>
+        <form className={styles.formInfo} onSubmit={handleSubmit}>
           <MyInput
             className={styles.input}
-            label="Дата добавления поста, по умолчанию сегодня"
-            placeholder="Дата"
-            type="date"
+            label="Заголовок поста"
+            placeholder="Название"
+            type="text"
             border={true}
-            id="login"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+
+          <div className={styles.selectWrapper}>
+            <EmotionSelect
+              className={styles.select}
+              value={mood}
+              onChange={setMood}
+            />
+            <MyInput
+              className={styles.input}
+              label="Дата добавления поста, по умолчанию сегодня"
+              placeholder="Дата"
+              type="date"
+              border={true}
+              id="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+          </div>
+
+          <MyTextarea
+            fieldClassName={styles.textarea}
+            label="Описание поста"
+            placeholder="Описание"
+            type="text"
+            border={true}
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+
+          <MyButton className={styles.btnSubmit}>Создать</MyButton>
+        </form>
+        <div className={styles.formImage}>
+          <SearchBar
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-      </div>
-      <div className={styles.formImage}>
-        <SearchBar />
       </div>
     </div>
   );
