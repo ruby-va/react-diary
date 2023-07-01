@@ -1,4 +1,4 @@
-# React diary
+# React diary (client)
 
 React diary - application for keeping a diary of notes about something)
 

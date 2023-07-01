@@ -26,6 +26,16 @@ class PostController {
       console.log(e);
     }
   }
+
+  async getImages(req, res) {
+    try {
+      const images = await Image.find();
+      const newImages = images.map((image) => new ImageDto(image));
+      res.json(newImages);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 module.exports = new PostController();
