@@ -10,10 +10,9 @@ import AuthModal from "@/modules/AuthModal/AuthModal";
 import { Context } from "@/main";
 import { observer } from "mobx-react-lite";
 
-function Header(props) {
+const Header = observer((props) => {
   const { isSearchBar = true } = props;
   const { store } = useContext(Context);
-  console.log(store);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,7 +28,7 @@ function Header(props) {
           <div className={styles.menu}>
             {isSearchBar && (
               <>
-                <SearchBar className={styles.menuSearch} />{" "}
+                <SearchBar className={styles.menuSearch} />
                 <EmotionSelect className={styles.menuSelect} />
               </>
             )}
@@ -38,8 +37,8 @@ function Header(props) {
           </div>
 
           <div className="user">
-            {store.isAuth ? (
-              <button onClick={() => store.logout()}>Выйти</button>
+            {store.authStore.isAuth ? (
+              <button onClick={() => store.authStore.logout()}>Выйти</button>
             ) : (
               <button onClick={() => setIsModalOpen(true)}>Войти</button>
             )}
@@ -52,5 +51,6 @@ function Header(props) {
       </div>
     </header>
   );
-}
-export default observer(Header);
+});
+
+export default Header;

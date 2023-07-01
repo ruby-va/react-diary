@@ -6,7 +6,7 @@ import { useContext, useState } from "react";
 import { Context } from "@/main";
 import { observer } from "mobx-react-lite";
 
-const AuthModal = (props) => {
+const AuthModal = observer((props) => {
   const { store } = useContext(Context);
   const { isOpen, onClose } = props;
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -18,8 +18,8 @@ const AuthModal = (props) => {
     btnText: "Регистрация",
     formHandler: async (e) => {
       e.preventDefault();
-      await store.registration(userEmail, password);
-      if (store.isAuth) {
+      await store.authStore.registration(userEmail, password);
+      if (store.authStore.isAuth) {
         onClose();
       }
     },
@@ -30,8 +30,8 @@ const AuthModal = (props) => {
     btnText: "Войти",
     formHandler: async (e) => {
       e.preventDefault();
-      await store.login(userEmail, password);
-      if (store.isAuth) {
+      await store.authStore.login(userEmail, password);
+      if (store.authStore.isAuth) {
         onClose();
       }
     },
@@ -91,5 +91,6 @@ const AuthModal = (props) => {
       </form>
     </Modal>
   );
-};
-export default observer(AuthModal);
+});
+
+export default AuthModal;

@@ -1,3 +1,4 @@
+const PostDto = require("../dtos/PostDto");
 const Post = require("../models/Post");
 const { validationResult } = require("express-validator");
 
@@ -21,7 +22,8 @@ class PostController {
   async getPosts(req, res) {
     try {
       const posts = await Post.find();
-      res.json(posts);
+      const newPosts = posts.map((post) => new PostDto(post));
+      res.json(newPosts);
     } catch (e) {
       console.log(e);
     }

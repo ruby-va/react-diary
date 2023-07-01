@@ -3,6 +3,8 @@ import styles from "./EntryList.module.scss";
 
 function EntryList(props) {
   const { entries } = props;
+  console.log(entries);
+
   return (
     <section className={styles.entries}>
       <div className="container">

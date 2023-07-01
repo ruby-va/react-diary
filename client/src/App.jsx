@@ -4,11 +4,11 @@ import { Context } from "@/main";
 import { observer } from "mobx-react-lite";
 import { useContext, useEffect } from "react";
 
-const App = () => {
+const App = observer(() => {
   const { store } = useContext(Context);
 
   useEffect(() => {
-    store.checkAuth();
+    store.authStore.checkAuth();
   }, []);
 
   if (store.isLoading) {
@@ -33,5 +33,6 @@ const App = () => {
       <RouterProvider router={router} />;
     </div>
   );
-};
-export default observer(App);
+});
+
+export default App;

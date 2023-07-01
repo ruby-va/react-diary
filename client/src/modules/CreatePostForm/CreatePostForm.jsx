@@ -9,7 +9,7 @@ import MyTextarea from "@/UI/MyTextarea/MyTextarea";
 const CreatePostForm = () => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
-  const [mood, setMood] = useState("cry");
+  const [mood, setMood] = useState({ value: "cry", text: "Плачет" });
   const [description, setDescription] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 

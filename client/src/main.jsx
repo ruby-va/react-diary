@@ -2,11 +2,11 @@ import React, { createContext } from "react";
 import ReactDOM from "react-dom/client";
 import "normalize.css";
 import "@/assets/styles/index.scss";
-import Store from "./store/store";
+import RootStore from "./store/RootStore";
 
 import App from "./App";
 
-const store = new Store();
+const store = new RootStore();
 
 export const Context = createContext({
   store,

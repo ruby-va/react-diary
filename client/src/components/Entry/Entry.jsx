@@ -2,12 +2,12 @@ import EmotionIcon from "@/UI/EmotionIcon/EmotionIcon";
 import styles from "./Entry.module.scss";
 
 function Entry(props) {
-  const { image, title, text, date, emotion = "calm" } = props;
+  const { image, title, content, date, emotion = "calm" } = props;
 
   return (
     <article
       className={styles.entry}
-      style={{ backgroundImage: `url(${image})` }}
+      style={image ? { backgroundImage: `url(${image})` } : undefined}
     >
       <div className={styles.mood}>
         <EmotionIcon emotion={emotion} size={18} text="fsd" />
@@ -17,7 +17,7 @@ function Entry(props) {
           <h3 className={styles.title}>{title}</h3>
           <span className={styles.date}>{date}</span>
         </div>
-        <div className={styles.text}>{text.substring(0, 30) + "..."}</div>
+        <div className={styles.text}>{content.substring(0, 30) + "..."}</div>
       </div>
     </article>
   );

@@ -3,7 +3,7 @@ import { makeAutoObservable } from "mobx";
 import AuthService from "@/services/AuthService";
 import { API_URL } from "@/http";
 
-export default class Store {
+export default class AuthStore {
   user = {};
   isAuth = false;
   isLoading = true;
