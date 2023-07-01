@@ -65,7 +65,7 @@ export default class AuthStore {
   async checkAuth() {
     this.setLoading(true);
     try {
-      const response = await axios.get(`${API_URL}/refresh`, {
+      const response = await axios.get(`${API_URL}/auth/refresh`, {
         withCredentials: true,
       });
 

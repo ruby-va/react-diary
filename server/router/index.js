@@ -1,43 +1,38 @@
 const Router = require("express").Router;
-const userController = require("../controllers/UserController");
-const postController = require("../controllers/PostController");
+const authRouter = require("./authRouter");
+const postRouter = require("./postRouter");
+const imageController = require("../controllers/ImageController");
+
 const router = new Router();
-const { body } = require("express-validator");
-const authMiddleware = require("../middleware/auth-middleware");
 
-router.post(
-  "/registration",
-  body("email", "Невалидный Email").isEmail(),
-  body("password", "Длинна пароля должна быть от 5 до 32 символов").isLength({
-    min: 5,
-    max: 32,
-  }),
-  userController.registration
+const sharp = require("sharp");
+const upload = require("../multer/upload");
+const sharpMiddleware = require("../multer/sharpMiddleware");
+
+router.use("/auth", authRouter);
+router.use("/posts", postRouter);
+router.use(
+  "/image",
+  upload.single("upload"),
+  //   sharpMiddleware,
+  async (req, res, next) => {
+    try {
+      const fileName = `${Date.now()}${req.file.originalname}`;
+      const fileUrl = __basedir + `/images/${fileName}`;
+
+      await sharp(req.file.buffer)
+        .resize({ width: 500, height: 500 })
+        .png()
+        .toFile(fileUrl);
+      res.locals.fileUrl = fileUrl;
+      res.locals.filename = fileName;
+      next();
+    } catch (error) {
+      console.log(error);
+      res.status(400).send(error);
+    }
+  },
+  imageController.createImage
 );
-router.post("/login", userController.login);
-router.post("/logout", userController.logout);
-
-router.get("/activate/:link", userController.activate);
-router.get("/refresh", userController.refresh);
-router.get("/users", authMiddleware, userController.getUsers);
-
-// Posts
-// TODO: Добавить валидацию на ссылку - пропускать только картинки
-router.post(
-  "/posts/create",
-  body("title", "Заголовок не может быть пустым.").notEmpty(),
-  body("content", "Текст должен быть больше 30 символов").isLength({
-    min: 30,
-  }),
-  body("image", "Изображение должно быть ссылкой")
-    .optional({ nullable: true })
-    .isURL(),
-
-  postController.createPost
-);
-
-router.get("/posts/all", authMiddleware, postController.getPosts);
-
-router.get("/posts/filtered", authMiddleware, postController.getFilteredPosts);
 
 module.exports = router;
