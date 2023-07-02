@@ -2,7 +2,7 @@ import EmotionIcon from "@/UI/EmotionIcon/EmotionIcon";
 import styles from "./Entry.module.scss";
 
 function Entry(props) {
-  const { image, title, content, date, emotion = "calm" } = props;
+  const { image, title, content, date, mood } = props;
 
   return (
     <article
@@ -10,7 +10,7 @@ function Entry(props) {
       style={image ? { backgroundImage: `url(${image})` } : undefined}
     >
       <div className={styles.mood}>
-        <EmotionIcon emotion={emotion} size={18} text="fsd" />
+        <EmotionIcon emotion={mood} size={18} text="fsd" />
       </div>
       <div className={styles.content}>
         <div className={styles.titleWrapper}>

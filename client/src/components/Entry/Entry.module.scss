@@ -12,6 +12,9 @@
   border-radius: 12px;
 
   background: linear-gradient(135deg, #61b15a 0%, #adce74 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   &::before {
     content: "";

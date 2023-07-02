@@ -12,9 +12,9 @@ router.post(
   body("content", "Текст должен быть больше 30 символов").isLength({
     min: 30,
   }),
-  body("image", "Изображение должно быть ссылкой")
-    .optional({ nullable: true })
-    .isURL(),
+  // body("image", "Изображение должно быть ссылкой")
+  //   .optional({ nullable: true })
+  //   .isURL(),
 
   postController.createPost
 );

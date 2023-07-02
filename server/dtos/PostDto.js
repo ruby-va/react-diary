@@ -10,8 +10,12 @@ module.exports = class PostDto {
     this.title = model.title;
     this.id = model._id;
     this.content = model.content;
-    this.image = model.image;
+    this.image = this.filenameToStaticUrl(model.image);
     this.mood = model.mood;
     this.author = model.author;
+  }
+
+  filenameToStaticUrl(filename) {
+    return filename !== null ? process.env.API_URL + `/${filename}` : null;
   }
 };

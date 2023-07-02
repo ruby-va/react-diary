@@ -29,4 +29,18 @@ export default class PostStore {
       this.setLoading(false);
     }
   }
+
+  async CreatePost(data) {
+    this.setLoading(true);
+    try {
+      const response = await PostService.createPost(data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setTimeout(() => {
+        this.setLoading(false);
+      }, 500);
+    }
+  }
 }

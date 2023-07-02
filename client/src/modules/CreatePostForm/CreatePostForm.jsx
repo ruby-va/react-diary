@@ -1,25 +1,46 @@
 import MyInput from "@/UI/MyInput/MyInput";
 import styles from "./CreatePostForm.module.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import EmotionSelect from "@/UI/EmotionSelect/EmotionSelect";
-import SearchBar from "@/components/SearchBar/SearchBar";
 import MyButton from "@/UI/MyButton/MyButton";
 import MyTextarea from "@/UI/MyTextarea/MyTextarea";
+import ImageFinder from "@/components/ImageFinder/ImageFinder";
 
-const CreatePostForm = () => {
+import { Context } from "@/main";
+import { observer } from "mobx-react-lite";
+import PostService from "@/services/PostService";
+
+const CreatePostForm = observer(() => {
+  const { store } = useContext(Context);
+
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
   const [mood, setMood] = useState({ value: "cry", text: "Плачет" });
   const [description, setDescription] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [image, setImage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(title, date, mood, description, searchTerm);
+    const data = {
+      title,
+      content: description,
+      date,
+      mood: mood.value,
+      image,
+      author: store.authStore.user.id,
+    };
+
+    store.postStore.CreatePost(data);
+  };
+
+  const getImage = (image) => {
+    console.log(image);
+    setImage(image);
   };
 
   return (
     <div className="container">
+      {store.postStore.isLoading && <h1>Отправка формы...</h1>}
       <div className={styles.grid}>
         <form className={styles.formInfo} onSubmit={handleSubmit}>
           <MyInput
@@ -65,13 +86,10 @@ const CreatePostForm = () => {
           <MyButton className={styles.btnSubmit}>Создать</MyButton>
         </form>
         <div className={styles.formImage}>
-          <SearchBar
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <ImageFinder getImage={getImage} />
         </div>
       </div>
     </div>
   );
-};
+});
 export default CreatePostForm;
