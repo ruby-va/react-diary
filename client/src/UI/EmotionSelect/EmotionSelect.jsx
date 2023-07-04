@@ -33,7 +33,7 @@ function EmotionSelect(props) {
       height: "60px",
       borderRadius: "12px",
     }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    option: (styles) => {
       return {
         ...styles,
         height: "40px",

@@ -7,7 +7,7 @@ import placeholderIcon from "@/assets/images/emotions/smile-mouth-open.png";
 import styles from "./EmotionIcon.module.scss";
 
 function EmotionIcon(props) {
-  const { emotion = "placeholder", size } = props;
+  const { emotion = "placeholder", size, ...otherDefaultProps } = props;
 
   const iconsMap = {
     calm: calmIcon,
@@ -20,7 +20,7 @@ function EmotionIcon(props) {
   return (
     <img
       className={styles.icon}
-      {...props}
+      {...otherDefaultProps}
       width={size}
       height={size}
       src={iconsMap[emotion]}
