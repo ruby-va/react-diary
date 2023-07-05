@@ -5,7 +5,7 @@ import { API_URL } from '@/services/shared/my-axios.ts';
 import { IUser } from '@/types/IUser.ts';
 
 export default class AuthStore {
-  user = {};
+  user: IUser = {} as IUser;
   isAuth = false;
   isLoading = true;
 

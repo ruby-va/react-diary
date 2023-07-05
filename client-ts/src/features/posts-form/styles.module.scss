@@ -1,0 +1,40 @@
+.grid {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
+}
+
+// .row {
+//   display: flex;
+
+//   &:not(:last-child) {
+//     margin-bottom: 16px;
+//   }
+// }
+
+.select {
+  margin-right: 16px;
+}
+
+.formInfo {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 16px;
+}
+
+.selectWrapper {
+  display: flex;
+  max-width: 326px;
+  width: 100%;
+}
+
+.btnSubmit {
+  max-width: 175px;
+  width: 100%;
+  margin-left: auto;
+}
+
+.textarea {
+  min-height: 478px;
+}

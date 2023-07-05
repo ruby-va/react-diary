@@ -3,50 +3,27 @@ import logo from '@/assets/images/logo.svg';
 import styles from './styles.module.scss';
 import { useContext, useState } from 'react';
 import MoodSelect from '@/components/ui/mood-select';
-import { MoodTypes } from '@/types';
+import { MoodOption } from '@/types';
 import Searchbar from '@/components/searchbar';
 import MainMenu from '@/components/main-menu';
 import AuthModal from '@/features/auth-modal';
 import { Context } from '@/main.tsx';
 import { observer } from 'mobx-react-lite';
+import { MoodVariants as options } from '@/constants/mood-variants.ts';
 
 type Props = {
   isSearchBar?: boolean;
 };
 
-interface SelectOption {
-  readonly label: string;
-  readonly value: MoodTypes;
-}
-
-const options: SelectOption[] = [
-  {
-    value: 'cry',
-    label: 'Плачет',
-  },
-  {
-    value: 'pensive',
-    label: 'Задумчивый',
-  },
-  {
-    value: 'happy',
-    label: 'Счастливый',
-  },
-  {
-    value: 'calm',
-    label: 'Спокойный',
-  },
-];
-
 const Index = observer((props: Props) => {
   const { isSearchBar = true } = props;
   const { store } = useContext(Context);
 
-  const [mood, setMood] = useState<SelectOption | null>({
+  const [mood, setMood] = useState<MoodOption | null>({
     value: 'cry',
     label: 'Плачет',
   });
-  const handleMoodSelect = (option: SelectOption | null) => {
+  const handleMoodSelect = (option: MoodOption | null) => {
     console.log(mood);
     setMood(option);
   };

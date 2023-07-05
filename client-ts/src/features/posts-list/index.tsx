@@ -1,13 +1,12 @@
 import styles from './style.module.scss';
-import { FC } from 'react';
-import { IPostPreview } from '@/types';
+import { IPost } from '@/types';
 import PostPreview from '@/components/post-preview';
 
 interface Props {
-  posts: IPostPreview[];
+  posts: IPost[];
 }
 
-const Index: FC<Props> = (props) => {
+const Index = (props: Props) => {
   const { posts } = props;
 
   return (
