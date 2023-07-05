@@ -4,35 +4,35 @@ import MoodIcon from '@/components/ui/mood-icon';
 import { MoodTypes } from '@/types';
 import styles from './styles.module.scss';
 
-type SelectOption = {
-  value: MoodTypes;
-  text: string;
-};
+interface SelectOption {
+  readonly label: string;
+  readonly value: MoodTypes;
+}
 
-function MoodSelect<
+const options: SelectOption[] = [
+  {
+    value: 'cry',
+    label: 'Плачет',
+  },
+  {
+    value: 'pensive',
+    label: 'Задумчивый',
+  },
+  {
+    value: 'happy',
+    label: 'Счастливый',
+  },
+  {
+    value: 'calm',
+    label: 'Спокойный',
+  },
+];
+
+function Index<
   Option,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
 >(props: Props<Option, IsMulti, Group>) {
-  const options: SelectOption[] = [
-    {
-      value: 'cry',
-      text: 'Плачет',
-    },
-    {
-      value: 'pensive',
-      text: 'Задумчивый',
-    },
-    {
-      value: 'happy',
-      text: 'Счастливый',
-    },
-    {
-      value: 'calm',
-      text: 'Спокойный',
-    },
-  ];
-
   const { ...otherDefaultProps } = props;
 
   const myCustomStyles: StylesConfig<Option, IsMulti, Group> = {
@@ -55,22 +55,21 @@ function MoodSelect<
     },
   };
 
-  // return <Select {...props} theme={(theme) => ({ ...theme, borderRadius: 0 })} />;
-
   return (
     <Select
+      formatOptionLabel={(e) => {
+        return (
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <MoodIcon title={e.label} emotion={e.value} size={24} />
+          </div>
+        );
+      }}
+      options={options}
+      placeholder={<MoodIcon size={24} emotion="default" />}
       styles={myCustomStyles}
       {...otherDefaultProps}
-      formatOptionLabel={(e) => {
-        {
-          console.log(e);
-        }
-        return <div></div>;
-      }}
-      // options={options} Error types
-      placeholder={<MoodIcon size={24} emotion="default" />}
     ></Select>
   );
 }
 
-export default MoodSelect;
+export default Index;

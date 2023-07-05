@@ -1,0 +1,41 @@
+.header {
+  padding: 36px 0;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+
+  img {
+    margin-right: 18px;
+  }
+
+  span {
+    font-size: 36px;
+    font-weight: 700;
+  }
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 50px;
+  // flex-grow: 1;
+}
+
+.menuSearch {
+  max-width: 480px;
+  margin-right: 14px;
+  min-width: 480px;
+}
+
+.menuSelect {
+  margin-right: 35px;
+}

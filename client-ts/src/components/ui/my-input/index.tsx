@@ -4,7 +4,6 @@ import { InputProps } from '@/types';
 import MyLabel from '@/components/ui/my-label';
 
 interface Props extends InputProps {
-  // onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   isLabelShown: boolean;
   border: boolean;
   labelText: string;
