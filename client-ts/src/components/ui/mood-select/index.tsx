@@ -9,27 +9,8 @@ interface SelectOption {
   readonly value: MoodTypes;
 }
 
-const options: SelectOption[] = [
-  {
-    value: 'cry',
-    label: 'Плачет',
-  },
-  {
-    value: 'pensive',
-    label: 'Задумчивый',
-  },
-  {
-    value: 'happy',
-    label: 'Счастливый',
-  },
-  {
-    value: 'calm',
-    label: 'Спокойный',
-  },
-];
-
 function Index<
-  Option,
+  Option extends SelectOption,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
 >(props: Props<Option, IsMulti, Group>) {
@@ -64,7 +45,6 @@ function Index<
           </div>
         );
       }}
-      options={options}
       placeholder={<MoodIcon size={24} emotion="default" />}
       styles={myCustomStyles}
       {...otherDefaultProps}

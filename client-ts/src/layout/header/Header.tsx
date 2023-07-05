@@ -42,9 +42,13 @@ const Index = observer((props: Props) => {
   const { isSearchBar = true } = props;
   const { store } = useContext(Context);
 
-  const [mood, setMood] = useState<SelectOption>({ value: 'cry', label: 'Плачет' });
-  const handleMoodSelect = (value: SelectOption) => {
-    setMood(value);
+  const [mood, setMood] = useState<SelectOption | null>({
+    value: 'cry',
+    label: 'Плачет',
+  });
+  const handleMoodSelect = (option: SelectOption | null) => {
+    console.log(mood);
+    setMood(option);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -64,7 +68,6 @@ const Index = observer((props: Props) => {
                 <Searchbar className={styles.menuSearch} />
 
                 <MoodSelect
-                  mode="rows"
                   options={options}
                   onChange={handleMoodSelect}
                   className={styles.menuSelect}
