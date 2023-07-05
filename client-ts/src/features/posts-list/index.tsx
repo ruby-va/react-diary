@@ -1,6 +1,6 @@
 import styles from './style.module.scss';
-import { IPost } from '@/types';
 import PostPreview from '@/components/post-preview';
+import { IPost } from '@/types/IPost.ts';
 
 interface Props {
   posts: IPost[];

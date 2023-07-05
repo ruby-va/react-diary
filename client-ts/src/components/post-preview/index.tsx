@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
 import styles from './styles.module.scss';
-import { IPostPreview } from '@/types';
-import MoodIcon from '@/components/ui/mood-icon';
 
-const Index: FC<IPostPreview> = (props) => {
+import MoodIcon from '@/components/ui/mood-icon';
+import { IPost } from '@/types/IPost.ts';
+
+const Index: FC<IPost> = (props) => {
   const { content, mood, title, image, date } = props;
   return (
     <article

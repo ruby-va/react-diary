@@ -7,4 +7,5 @@ export interface IPost {
   image: string | null;
   mood: MoodTypes;
   author: string;
+  date: string;
 }
