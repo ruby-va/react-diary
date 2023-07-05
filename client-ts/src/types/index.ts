@@ -13,11 +13,12 @@ export interface LabelProps
 export interface ImageProps
   extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {}
 
-export interface IPostPreview {
+export interface IPost {
   id: string;
   title: string;
   image: string;
   date: string;
+  author: string;
   content: string;
   mood: MoodTypes;
 }

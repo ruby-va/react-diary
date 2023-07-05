@@ -4,15 +4,21 @@ import { InputProps } from '@/types';
 import MyLabel from '@/components/ui/my-label';
 
 interface Props extends InputProps {
-  isLabelShown: boolean;
-  border: boolean;
+  isLabelShown?: boolean;
+  border?: boolean;
   labelText: string;
-  wrapperClassName: string;
+  wrapperClassName?: string;
 }
 
 const Index: FC<Props> = (props) => {
-  const { isLabelShown, wrapperClassName, id, border, labelText, ...otherDefaultProps } =
-    props;
+  const {
+    isLabelShown = false,
+    wrapperClassName,
+    id,
+    border = true,
+    labelText,
+    ...otherDefaultProps
+  } = props;
 
   return (
     <div className={`${styles.inputWrapper} ${wrapperClassName}`}>

@@ -1,35 +1,18 @@
-import MyInput from '@/components/ui/my-input';
-import { ChangeEvent, useState } from 'react';
-import { MoodTypes } from '@/types';
-import Header from '@/layout/header/Header.tsx';
-import MoodSelect from '@/components/ui/mood-select';
-
-interface SelectOption {
-  label: string;
-  value: MoodTypes;
-}
+import router from './router';
+import { RouterProvider } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Context } from '@/main.tsx';
 
 function App() {
-  const [name, setName] = useState('');
-  const [select, setSelect] = useState({ value: 'cry', label: 'Плачет' });
+  const { store } = useContext(Context);
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    console.log(e);
-    setSelect(e);
-  };
+  useEffect(() => {
+    store.authStore.checkAuth();
+  }, []);
 
   return (
     <>
-      <MyInput
-        isLabelShown={true}
-        border={true}
-        labelText="Введите ваше имя"
-        wrapperClassName="wrapperClass"
-        onChange={(e) => setName(e.target.value)}
-        value={name}
-      />
-      {/*<Header />*/}
-      <MoodSelect onChange={handleChange} value={select} />
+      <RouterProvider router={router} />
     </>
   );
 }

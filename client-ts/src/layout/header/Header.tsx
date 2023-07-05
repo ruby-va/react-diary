@@ -1,48 +1,53 @@
-// import Menu from '@/components/Menu/Menu';
 import logo from '@/assets/images/logo.svg';
 
 import styles from './styles.module.scss';
 import { useContext, useState } from 'react';
-import Select from '@/components/ui/my-select';
+import MoodSelect from '@/components/ui/mood-select';
+import { MoodTypes } from '@/types';
+import Searchbar from '@/components/searchbar';
+import MainMenu from '@/components/main-menu';
+import AuthModal from '@/features/auth-modal';
+import { Context } from '@/main.tsx';
+import { observer } from 'mobx-react-lite';
 
 type Props = {
   isSearchBar?: boolean;
 };
 
-const options = [
+interface SelectOption {
+  readonly label: string;
+  readonly value: MoodTypes;
+}
+
+const options: SelectOption[] = [
   {
     value: 'cry',
-    title: 'Плачет',
+    label: 'Плачет',
   },
   {
     value: 'pensive',
-    title: 'Задумчивый',
+    label: 'Задумчивый',
   },
   {
     value: 'happy',
-    title: 'Счастливый',
+    label: 'Счастливый',
   },
   {
     value: 'calm',
-    title: 'Спокойный',
+    label: 'Спокойный',
   },
 ];
 
-const Index = (props: Props) => {
+const Index = observer((props: Props) => {
   const { isSearchBar = true } = props;
-  const isAuth = true;
+  const { store } = useContext(Context);
 
-  const [mood, setMood] = useState('');
-  const handleMoodSelect = (value: string) => {
+  const [mood, setMood] = useState<SelectOption>({ value: 'cry', label: 'Плачет' });
+  const handleMoodSelect = (value: SelectOption) => {
     setMood(value);
   };
-  const selectedMood = options.find((item) => item.value === mood);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const logout = () => {
-    console.log('logout');
-  };
 
   return (
     <header className={styles.header}>
@@ -56,34 +61,34 @@ const Index = (props: Props) => {
           <div className={styles.menu}>
             {isSearchBar && (
               <>
-                {/*<SearchBar className={styles.menuSearch} />*/}
+                <Searchbar className={styles.menuSearch} />
 
-                <Select
+                <MoodSelect
                   mode="rows"
                   options={options}
-                  selected={selectedMood || null}
                   onChange={handleMoodSelect}
-                  placeholder="Выберите настроение"
                   className={styles.menuSelect}
+                  value={mood}
+                  isSearchable={false}
                 />
               </>
             )}
 
-            {/*<Menu />*/}
+            <MainMenu />
           </div>
 
           <div className="user">
-            {isAuth ? (
-              <button onClick={() => logout()}>Выйти</button>
+            {store.authStore.isAuth ? (
+              <button onClick={() => store.authStore.logout()}>Выйти</button>
             ) : (
               <button onClick={() => setIsModalOpen(true)}>Войти</button>
             )}
           </div>
-          {/*<AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />*/}
+          <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
       </div>
     </header>
   );
-};
+});
 
 export default Index;

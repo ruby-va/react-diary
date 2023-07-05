@@ -1,4 +1,4 @@
-import Select, { GroupBase, Props, StylesConfig } from 'react-select';
+import Select, { GroupBase, Props, StylesConfig, SingleValue } from 'react-select';
 
 import MoodIcon from '@/components/ui/mood-icon';
 import { MoodTypes } from '@/types';

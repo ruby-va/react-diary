@@ -12,7 +12,8 @@ class PostController {
           .json({ message: "Ошибка при добавлении поста", errors });
       }
       const post = new Post(req.body);
-      const postData = await post.save();
+      const postData = new PostDto(await post.save())
+
       res.json(postData);
     } catch (e) {
       console.log(e);

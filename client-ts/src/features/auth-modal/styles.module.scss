@@ -1,0 +1,40 @@
+.modal {
+}
+
+.input {
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 100%;
+  padding: 8px 30px;
+
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+
+  background-color: #61b15a;
+  border-radius: 12px;
+  border: none;
+}
+
+.formChanger {
+  margin-top: 10px;
+  font-size: 14px;
+
+  span {
+    margin-right: 4px;
+  }
+
+  button {
+    padding: 0;
+
+    color: $active;
+    font-size: 14px;
+
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $active;
+    cursor: pointer;
+  }
+}
