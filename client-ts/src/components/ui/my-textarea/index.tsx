@@ -9,16 +9,15 @@ interface Props extends TextAreaProps {
   labelText?: string;
 }
 
-const Index = (props: Props) => {
-  const {
-    labelText,
-    isLabelShown = false,
-    className,
-    wrapperClassName,
-    border = false,
-    id,
-    ...otherDefaultProps
-  } = props;
+const Index = ({
+  labelText,
+  isLabelShown = false,
+  className,
+  wrapperClassName,
+  border = false,
+  id,
+  ...otherDefaultProps
+}: Props) => {
   return (
     <div className={`${styles.inputWrapper} ${wrapperClassName}`}>
       {labelText && <MyLabel isHidden={false} htmlFor={id} />}

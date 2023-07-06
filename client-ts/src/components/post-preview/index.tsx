@@ -1,11 +1,9 @@
-import React, { FC } from 'react';
 import styles from './styles.module.scss';
 
 import MoodIcon from '@/components/ui/mood-icon';
 import { IPost } from '@/types/IPost.ts';
 
-const Index: FC<IPost> = (props) => {
-  const { content, mood, title, image, date } = props;
+const Index = ({ content, mood, title, image, date }: IPost) => {
   return (
     <article
       className={styles.entry}

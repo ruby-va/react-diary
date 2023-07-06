@@ -4,13 +4,10 @@ import happyIcon from '@/assets/images/emotions/happy.png';
 import cryIcon from '@/assets/images/emotions/cry.png';
 import placeholderIcon from '@/assets/images/emotions/smile-mouth-open.png';
 
-import { FC } from 'react';
 import styles from './styles.module.scss';
 import { IMoodIcon } from '@/types';
 
-const MoodIcon: FC<IMoodIcon> = (props) => {
-  const { emotion = 'default', size, ...otherDefaultProps } = props;
-
+const MoodIcon = ({ emotion = 'default', size, ...otherDefaultProps }: IMoodIcon) => {
   const iconsMap = {
     calm: calmIcon,
     happy: happyIcon,

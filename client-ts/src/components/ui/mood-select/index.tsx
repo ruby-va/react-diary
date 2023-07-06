@@ -13,9 +13,7 @@ function Index<
   Option extends SelectOption,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
->(props: Props<Option, IsMulti, Group>) {
-  const { ...otherDefaultProps } = props;
-
+>({ ...otherDefaultProps }: Props<Option, IsMulti, Group>) {
   const myCustomStyles: StylesConfig<Option, IsMulti, Group> = {
     control: (styles) => ({
       ...styles,

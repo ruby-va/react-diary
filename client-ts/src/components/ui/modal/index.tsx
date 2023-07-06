@@ -1,4 +1,4 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import styles from './styles.module.scss';
 import { createPortal } from 'react-dom';
 
@@ -7,9 +7,7 @@ interface Props {
   onClose: () => void;
   children: ReactElement;
 }
-const Index = (props: Props) => {
-  const { isOpen, children, onClose } = props;
-
+const Index = ({ onClose, isOpen, children }: Props) => {
   return (
     isOpen &&
     createPortal(

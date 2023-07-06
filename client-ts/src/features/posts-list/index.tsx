@@ -6,9 +6,7 @@ interface Props {
   posts: IPost[];
 }
 
-const Index = (props: Props) => {
-  const { posts } = props;
-
+const Index = ({ posts }: Props) => {
   return (
     <section className={styles.entries}>
       <div className="container">

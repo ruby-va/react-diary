@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import styles from './styles.module.scss';
 import { IPostImage } from '@/types/IPostImage.ts';
@@ -9,8 +9,7 @@ interface Props {
   getImage: (image: IPostImage) => void;
 }
 
-const Index = (props: Props) => {
-  const { getImage } = props;
+const Index = ({ getImage }: Props) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [images, setImages] = useState<IPostImage[]>([]);
   const [currentImage, setCurrentImage] = useState('');

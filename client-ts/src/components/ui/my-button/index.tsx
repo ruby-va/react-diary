@@ -9,8 +9,12 @@ interface Props extends ButtonProps {
   children?: ReactNode;
 }
 
-const MyButton = (props: Props) => {
-  const { colorType = 'green', children, className, ...otherDefaultProps } = props;
+const Index = ({
+  colorType = 'green',
+  children,
+  className,
+  ...otherDefaultProps
+}: Props) => {
   const btnStyles = {
     green: {
       background: '#61b15a',
@@ -35,4 +39,4 @@ const MyButton = (props: Props) => {
     </button>
   );
 };
-export default MyButton;
+export default Index;

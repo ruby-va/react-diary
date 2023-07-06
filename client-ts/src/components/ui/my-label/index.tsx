@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { LabelProps } from '@/types';
 
 interface Props extends LabelProps {
@@ -6,9 +5,13 @@ interface Props extends LabelProps {
   htmlFor: string | undefined;
 }
 
-const Index: FC<Props> = (props) => {
-  const { htmlFor, isHidden, children, className, ...otherDefaultProps } = props;
-
+const Index = ({
+  htmlFor,
+  isHidden,
+  children,
+  className,
+  ...otherDefaultProps
+}: Props) => {
   return (
     <label
       {...otherDefaultProps}

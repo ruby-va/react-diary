@@ -7,7 +7,6 @@ import { observer } from 'mobx-react-lite';
 
 const Index = observer(() => {
   const { store } = useContext(Context);
-  // console.log(store);
 
   useEffect(() => {
     store.postStore.getPosts();

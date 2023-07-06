@@ -1,28 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
-import displayGridIcon from '@/assets/images/icons/display-grid.svg';
-import penIcon from '@/assets/images/icons/pen.svg';
+import { mainMenu } from '@/constants/main-menu.ts';
 
 const Index = () => {
-  const menu = [
-    {
-      link: '/',
-      text: 'Список',
-      icon: displayGridIcon,
-      background: '#FFCE89',
-      color: '#000',
-    },
-    {
-      link: '/add-note',
-      text: 'Запись',
-      icon: penIcon,
-      background: '#61b15a',
-      color: '#fff',
-    },
-  ];
   return (
     <div className={styles.menu}>
-      {menu.map((item) => (
+      {mainMenu.map((item) => (
         <Link
           key={item.link}
           to={item.link}

@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import { useEffect } from 'react';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const navigate = useNavigate();

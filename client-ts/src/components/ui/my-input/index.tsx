@@ -1,4 +1,3 @@
-import { ChangeEvent, FC } from 'react';
 import styles from './style.module.scss';
 import { InputProps } from '@/types';
 import MyLabel from '@/components/ui/my-label';
@@ -10,16 +9,14 @@ interface Props extends InputProps {
   wrapperClassName?: string;
 }
 
-const Index: FC<Props> = (props) => {
-  const {
-    isLabelShown = false,
-    wrapperClassName,
-    id,
-    border = true,
-    labelText,
-    ...otherDefaultProps
-  } = props;
-
+const Index = ({
+  isLabelShown = false,
+  wrapperClassName,
+  id,
+  border = true,
+  labelText,
+  ...otherDefaultProps
+}: Props) => {
   return (
     <div className={`${styles.inputWrapper} ${wrapperClassName}`}>
       {labelText && <MyLabel isHidden={false} htmlFor={id} />}
