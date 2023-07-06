@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import { FormEvent, FormEventHandler, useContext, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import MyInput from '@/components/ui/my-input';
 import Modal from '@/components/ui/modal';
 import { Context } from '@/main.tsx';
@@ -9,9 +9,8 @@ interface Props {
   onClose: () => void;
 }
 
-const Index = (props: Props) => {
+const Index = ({ isOpen, onClose }: Props) => {
   const { store } = useContext(Context);
-  const { isOpen, onClose } = props;
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [userEmail, setUserEmail] = useState('');
   const [password, setPassword] = useState('');

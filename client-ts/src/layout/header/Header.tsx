@@ -10,25 +10,34 @@ import AuthModal from '@/features/auth-modal';
 import { Context } from '@/main.tsx';
 import { observer } from 'mobx-react-lite';
 import { MoodVariants as options } from '@/constants/mood-variants.ts';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   isSearchBar?: boolean;
+  isMenu?: boolean;
 };
 
-const Index = observer((props: Props) => {
-  const { isSearchBar = true } = props;
+const Index = observer(({ isMenu = true, isSearchBar = true }: Props) => {
   const { store } = useContext(Context);
 
   const [mood, setMood] = useState<MoodOption | null>({
     value: 'cry',
     label: 'Плачет',
   });
+
+  const navigate = useNavigate();
+
   const handleMoodSelect = (option: MoodOption | null) => {
     console.log(mood);
     setMood(option);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const logout = async () => {
+    await store.authStore.logout();
+    navigate('/ ');
+  };
 
   return (
     <header className={styles.header}>
@@ -54,12 +63,12 @@ const Index = observer((props: Props) => {
               </>
             )}
 
-            <MainMenu />
+            {isMenu && <MainMenu />}
           </div>
 
           <div className="user">
             {store.authStore.isAuth ? (
-              <button onClick={() => store.authStore.logout()}>Выйти</button>
+              <button onClick={() => logout()}>Выйти</button>
             ) : (
               <button onClick={() => setIsModalOpen(true)}>Войти</button>
             )}
