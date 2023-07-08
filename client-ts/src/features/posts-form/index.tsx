@@ -93,7 +93,9 @@ const Index = observer(() => {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <MyButton className={styles.btnSubmit}>Создать</MyButton>
+          <MyButton className={styles.btnSubmit} colorType="green">
+            Создать
+          </MyButton>
         </form>
         <div className={styles.formImage}>
           <ImageSelector getImage={getImage} />

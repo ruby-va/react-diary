@@ -1,6 +1,7 @@
 import styles from './styles.module.scss';
 import { ReactNode } from 'react';
 import { ButtonProps } from '@/types';
+import cl from 'classnames';
 
 type ColorTypes = 'green' | 'orange';
 
@@ -15,26 +16,21 @@ const Index = ({
   className,
   ...otherDefaultProps
 }: Props) => {
-  const btnStyles = {
-    green: {
-      background: '#61b15a',
-      color: '#fff',
-    },
-    orange: {
-      background: '#FFCE89',
-      color: '#000',
-    },
+  const colorVariants = {
+    green: 'btn-green',
+    orange: 'btn-orange',
   };
 
+  const btnColor = colorVariants[colorType];
+
+  const classes = cl(styles[btnColor], className, {
+    [styles.btn]: true,
+  });
+
+  console.log(classes);
+
   return (
-    <button
-      {...otherDefaultProps}
-      className={`${styles.btn} ${className}`}
-      style={{
-        backgroundColor: btnStyles[colorType].background,
-        color: btnStyles[colorType].color,
-      }}
-    >
+    <button {...otherDefaultProps} className={`${classes} ${className}`}>
       {children}
     </button>
   );
