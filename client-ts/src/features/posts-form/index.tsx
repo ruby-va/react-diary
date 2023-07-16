@@ -12,6 +12,7 @@ import { IPostImage } from '@/types/IPostImage.ts';
 import { MoodOption } from '@/types';
 import { MoodVariants as options } from '@/constants/mood-variants.ts';
 import MyTextarea from '@/components/ui/my-textarea';
+import { IPost } from '@/types/IPost.ts';
 
 const Index = observer(() => {
   const { store } = useContext(Context);
@@ -30,7 +31,7 @@ const Index = observer(() => {
       return;
     }
 
-    const data = {
+    const data: IPost = {
       title,
       content: description,
       date,

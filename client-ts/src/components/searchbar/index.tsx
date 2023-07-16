@@ -5,24 +5,24 @@ import MyInput from '@/components/ui/my-input';
 
 interface Props {
   className: string;
+  searchValue: string;
+  setSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Index = ({ className, ...otherDefaultProps }: Props) => {
-  const [searchValue, setSearchValue] = useState('');
-
+const Index = ({
+  className,
+  searchValue,
+  setSearchValue,
+  ...otherDefaultProps
+}: Props) => {
   console.log('className', className);
-
-  const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-    console.log(searchValue);
-  };
 
   return (
     <MyInput
       wrapperClassName={`${styles.searchInput} ${className}`}
       value={searchValue}
       placeholder="Поиск"
-      onChange={searchHandler}
+      onChange={setSearchValue}
       labelText="Поиск записей"
       id="search"
       {...otherDefaultProps}

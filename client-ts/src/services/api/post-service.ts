@@ -1,7 +1,8 @@
 import $api from '@/services/shared/my-axios.ts';
-import { IPost, MoodTypes } from '@/types';
+import { MoodTypes } from '@/types';
 import { PostResponse } from '@/types/response/post-response.ts';
 import { AxiosResponse } from 'axios';
+import { IPost } from '@/types/IPost.ts';
 
 export default class PostService {
   static async getAllPosts(): Promise<AxiosResponse<PostResponse[]>> {
@@ -12,7 +13,7 @@ export default class PostService {
     mood: MoodTypes,
     searchString: string,
   ): Promise<AxiosResponse<PostResponse[]>> {
-    return $api.post('/posts/all', { mood, searchString });
+    return $api.get(`/posts/filtered?mood=${mood}&searchString=${searchString}`);
   }
 
   static async createPost(data: IPost): Promise<AxiosResponse<PostResponse>> {

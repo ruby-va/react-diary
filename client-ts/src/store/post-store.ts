@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { makeAutoObservable } from 'mobx';
 import PostService from '@/services/api/post-service.ts';
-import { IPost } from '@/types';
+import { MoodTypes } from '@/types';
+import { IPost } from '@/types/IPost.ts';
 
 export default class PostStore {
   posts: IPost[] = [];
@@ -19,10 +19,10 @@ export default class PostStore {
     this.isLoading = bool;
   }
 
-  async getPosts() {
+  async getPosts(mood: MoodTypes = 'happy', searchTerm = '') {
     this.setLoading(true);
     try {
-      const response = await PostService.getAllPosts();
+      const response = await PostService.getFilteredPosts(mood, searchTerm);
       this.setPosts(response.data);
     } catch (e) {
       console.log(e);

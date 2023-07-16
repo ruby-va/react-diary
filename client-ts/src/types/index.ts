@@ -22,7 +22,7 @@ export interface LabelProps
 export interface ImageProps
   extends DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {}
 
-export type MoodTypes = 'calm' | 'pensive' | 'happy' | 'cry' | 'default';
+export type MoodTypes = 'calm' | 'pensive' | 'happy' | 'cry' | 'all';
 
 export interface IMoodIcon extends ImageProps {
   size: number;

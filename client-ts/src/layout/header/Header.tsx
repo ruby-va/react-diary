@@ -1,7 +1,7 @@
 import logo from '@/assets/images/logo.svg';
 
 import styles from './styles.module.scss';
-import { useContext, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import MoodSelect from '@/components/ui/mood-select';
 import { MoodOption } from '@/types';
 import Searchbar from '@/components/searchbar';
@@ -9,7 +9,7 @@ import MainMenu from '@/components/main-menu';
 import AuthModal from '@/features/auth-modal';
 import { Context } from '@/main.tsx';
 import { observer } from 'mobx-react-lite';
-import { MoodVariants as options } from '@/constants/mood-variants.ts';
+import { MoodVariants } from '@/constants/mood-variants.ts';
 import { useNavigate } from 'react-router-dom';
 
 type Props = {
@@ -19,11 +19,27 @@ type Props = {
 
 const Index = observer(({ isMenu = true, isSearchBar = true }: Props) => {
   const { store } = useContext(Context);
+  const options: MoodOption[] = [
+    {
+      value: 'all',
+      label: 'Все',
+    },
+    ...MoodVariants,
+  ];
 
   const [mood, setMood] = useState<MoodOption | null>({
-    value: 'cry',
-    label: 'Плачет',
+    value: 'all',
+    label: 'Все',
   });
+  const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    store.postStore.getPosts(mood?.value, searchTerm);
+  }, [mood, searchTerm]);
+
+  useEffect(() => {
+    store.postStore.getPosts(mood?.value, searchTerm);
+  }, []);
 
   const navigate = useNavigate();
 
@@ -34,9 +50,14 @@ const Index = observer(({ isMenu = true, isSearchBar = true }: Props) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(searchTerm);
+    setSearchTerm(e.target.value);
+  };
+
   const logout = async () => {
     await store.authStore.logout();
-    navigate('/ ');
+    navigate('/');
   };
 
   return (
@@ -51,7 +72,11 @@ const Index = observer(({ isMenu = true, isSearchBar = true }: Props) => {
           <div className={styles.menu}>
             {isSearchBar && (
               <>
-                <Searchbar className={styles.menuSearch} />
+                <Searchbar
+                  className={styles.menuSearch}
+                  searchValue={searchTerm}
+                  setSearchValue={handleSearch}
+                />
 
                 <MoodSelect
                   options={options}

@@ -7,24 +7,30 @@ import placeholderIcon from '@/assets/images/emotions/smile-mouth-open.png';
 import styles from './styles.module.scss';
 import { IMoodIcon } from '@/types';
 
-const MoodIcon = ({ emotion = 'default', size, ...otherDefaultProps }: IMoodIcon) => {
+const MoodIcon = ({ emotion = 'all', size, ...otherDefaultProps }: IMoodIcon) => {
   const iconsMap = {
     calm: calmIcon,
     happy: happyIcon,
     pensive: pensiveIcon,
     cry: cryIcon,
-    default: placeholderIcon,
+    all: placeholderIcon,
   };
 
   return (
-    <img
-      {...otherDefaultProps}
-      className={styles.icon}
-      width={size}
-      height={size}
-      src={iconsMap[emotion]}
-      alt=""
-    />
+    <>
+      {emotion === 'all' ? (
+        'Все'
+      ) : (
+        <img
+          {...otherDefaultProps}
+          className={styles.icon}
+          width={size}
+          height={size}
+          src={iconsMap[emotion]}
+          alt=""
+        />
+      )}
+    </>
   );
 };
 export default MoodIcon;

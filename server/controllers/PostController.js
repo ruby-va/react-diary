@@ -45,7 +45,8 @@ class PostController {
       filteredQuery.$text = { $search: searchString };
     }
     const posts = await Post.find({author: userData.id, ...filteredQuery});
-    res.json(posts);
+    const newPosts = posts.map((post) => new PostDto(post));
+    res.json(newPosts);
   }
 }
 

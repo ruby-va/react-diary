@@ -1,19 +1,25 @@
-import Select, { GroupBase, Props, StylesConfig, SingleValue } from 'react-select';
+import Select, { GroupBase, Props, StylesConfig } from 'react-select';
 
 import MoodIcon from '@/components/ui/mood-icon';
-import { MoodTypes } from '@/types';
-import styles from './styles.module.scss';
+import { MoodOption, MoodTypes } from '@/types';
 
 interface SelectOption {
   readonly label: string;
   readonly value: MoodTypes;
 }
 
+interface SelectProps {
+  readonly showAll?: boolean;
+}
+
 function Index<
   Option extends SelectOption,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>,
->({ ...otherDefaultProps }: Props<Option, IsMulti, Group>) {
+>({
+  showAll = false,
+  ...otherDefaultProps
+}: Props<Option, IsMulti, Group> & SelectProps) {
   const myCustomStyles: StylesConfig<Option, IsMulti, Group> = {
     control: (styles) => ({
       ...styles,
@@ -43,7 +49,7 @@ function Index<
           </div>
         );
       }}
-      placeholder={<MoodIcon size={24} emotion="default" />}
+      placeholder={<MoodIcon size={24} emotion="all" />}
       styles={myCustomStyles}
       {...otherDefaultProps}
     ></Select>

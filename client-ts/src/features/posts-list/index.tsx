@@ -7,6 +7,7 @@ interface Props {
 }
 
 const Index = ({ posts }: Props) => {
+  console.log(posts);
   return (
     <section className={styles.entries}>
       <div className="container">
