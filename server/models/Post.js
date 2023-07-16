@@ -12,6 +12,6 @@ const PostSchema = new Schema({
   image: { type: String, default: null },
 });
 
-PostSchema.index({ content: "text", title: "text" });
+PostSchema.index({ "$**": "text" });
 
 module.exports = model("Post", PostSchema);

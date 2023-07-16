@@ -19,4 +19,4 @@ React diary - application for keeping a diary of notes about something)
 - [ ] Add smooth transition on page routing
 - [ ] Add Roles based routing + Admin Role with Admin Interface
 - [ ] Add Post Single Page
-- [ ] Move button color options to classes
+- [x] Move button color options to classes

@@ -1,6 +1,8 @@
 const PostDto = require("../dtos/PostDto");
 const Post = require("../models/Post");
 const { validationResult } = require("express-validator");
+const tokenService = require("../service/TokenService");
+const ApiError = require("../exceptions/api-error");
 
 class PostController {
   async createPost(req, res) {
@@ -22,7 +24,8 @@ class PostController {
 
   async getPosts(req, res) {
     try {
-      const posts = await Post.find();
+      const userData = req.user;
+      const posts = await Post.find({author: userData.id});
       const newPosts = posts.map((post) => new PostDto(post));
       res.json(newPosts);
     } catch (e) {
@@ -31,15 +34,17 @@ class PostController {
   }
 
   async getFilteredPosts(req, res) {
-    const { mood, searchString } = req.body;
-    const filterdQuery = {};
+    const { mood = 'all', searchString = '' } = req.query;
+    const userData = req.user;
+    console.log(req.query)
+    const filteredQuery = {};
     if (mood !== "all") {
-      filterdQuery.mood = mood;
+      filteredQuery.mood = mood;
     }
     if (searchString !== "") {
-      filterdQuery.$text = { $search: searchString };
+      filteredQuery.$text = { $search: searchString };
     }
-    const posts = await Post.find(filterdQuery);
+    const posts = await Post.find({author: userData.id, ...filteredQuery});
     res.json(posts);
   }
 }
