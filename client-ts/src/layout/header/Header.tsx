@@ -11,47 +11,46 @@ import { Context } from '@/main.tsx';
 import { observer } from 'mobx-react-lite';
 import { MoodVariants } from '@/constants/mood-variants.ts';
 import { useNavigate } from 'react-router-dom';
+import { useDebounce } from '@/hooks/useDebounce.ts';
 
 type Props = {
   isSearchBar?: boolean;
   isMenu?: boolean;
 };
 
+const options: MoodOption[] = [
+  {
+    value: 'all',
+    label: 'Все',
+  },
+  ...MoodVariants,
+];
+
 const Index = observer(({ isMenu = true, isSearchBar = true }: Props) => {
   const { store } = useContext(Context);
-  const options: MoodOption[] = [
-    {
-      value: 'all',
-      label: 'Все',
-    },
-    ...MoodVariants,
-  ];
+  const navigate = useNavigate();
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [mood, setMood] = useState<MoodOption | null>({
     value: 'all',
     label: 'Все',
   });
   const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearch = useDebounce(getFilteredPosts, 500);
+
+  function getFilteredPosts() {
+    store.postStore.getPosts(mood?.value, searchTerm);
+  }
 
   useEffect(() => {
-    store.postStore.getPosts(mood?.value, searchTerm);
+    debouncedSearch();
   }, [mood, searchTerm]);
 
-  useEffect(() => {
-    store.postStore.getPosts(mood?.value, searchTerm);
-  }, []);
-
-  const navigate = useNavigate();
-
   const handleMoodSelect = (option: MoodOption | null) => {
-    console.log(mood);
     setMood(option);
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(searchTerm);
     setSearchTerm(e.target.value);
   };
 
